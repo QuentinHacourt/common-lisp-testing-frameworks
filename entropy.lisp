@@ -1,5 +1,6 @@
 (defpackage :entropy
-  (:use :cl))
+  (:use :cl)
+  (:export #:unique-symbols #:count-appearances #:str-len #:compute-probabilities #:compute-entropy))
 
 (in-package :entropy)
 
@@ -8,8 +9,8 @@
   (let ((symbols '()))
     (loop for char across str
           unless (member char symbols)
-                 (push char symbols)))
-  symbols))
+            do (push char symbols))
+    (reverse symbols)))
 
 (defun count-appearances (symbols str)
   "Counts how often each symbol in the list appears in the original string."
@@ -36,7 +37,6 @@
   (let* ((symbols (unique-symbols str))
          (frequencies (count-appearances symbols str))
          (len (str-len str))
-         (probabilities (compute-probabilities frequencies len))
-         (sum 0))
+         (probabilities (compute-probabilities frequencies len)))
     (- (loop for (symbol p) in probabilities
              sum (* p (log p 2))))))
