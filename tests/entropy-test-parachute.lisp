@@ -12,7 +12,8 @@
 (define-test unique-symbols-test
   (is equal (list #\a #\b #\c) (unique-symbols "abc"))
   (is equal (list #\a) (unique-symbols "aaaaaaaa"))
-  (is equal '() (unique-symbols "")))
+  (is equal '() (unique-symbols ""))
+  (is equal (list #\a #\b #\c) (unique-symbols "abcabacba")))
 
 (define-test count-appearances-test
   (let ((str ""))

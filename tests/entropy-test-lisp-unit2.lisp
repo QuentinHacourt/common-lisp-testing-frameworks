@@ -51,7 +51,7 @@
 
 (lisp-unit2:define-test compute-entropy-test
     (:tags :entropy)
-  (lisp-unit2:assert-equal 0 (compute-entropy "aaa"))
+  (lisp-unit2:assert-true (approx-equal 0 (compute-entropy "aaa")))
   (lisp-unit2:assert-true (approx-equal 1.58 (compute-entropy "abc")))
   (lisp-unit2:assert-true (approx-equal 4.02 (compute-entropy "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")))
   (lisp-unit2:assert-true (approx-equal 1.00 (compute-entropy "01001011010000001010101110111001000011011100000100011101001100110101011100000000101100011011000001011001011010100111010000010110110111010110100010111011111000101101"))))
